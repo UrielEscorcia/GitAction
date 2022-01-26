@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "actions-73e6b": {
+      "hosting": {
+        "GitAction": [
+          "actions-73e6b"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "actions-73e6b"
+  }
+}
