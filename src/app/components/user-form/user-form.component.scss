@@ -1,0 +1,23 @@
+.input-group {
+    @apply font-sans space-y-1;
+
+    .title {
+        @apply font-light text-lg text-slate-800;
+    }
+
+    .input-text {
+        @apply border border-slate-900 p-2 w-full rounded-lg text-slate-800 text-base font-extralight;
+    }
+
+    .input-radio {
+        @apply accent-slate-800;
+    }
+
+    span {
+        @apply font-medium text-sm text-slate-800;
+    }
+}
+
+.submit {
+    @apply w-full bg-slate-900 hover:bg-opacity-90 rounded-2xl py-2 px-4 font-sans font-light text-lg text-slate-100 disabled:bg-slate-700 disabled:text-slate-400;
+}
