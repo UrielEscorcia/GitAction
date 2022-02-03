@@ -42,6 +42,14 @@ export class UserFormComponent implements OnInit {
         return this.form.get('person.email') as FormControl;
     }
 
+    invalidInput(control: FormControl) {
+        return control.invalid && (control.dirty || control.touched);
+    }
+
+    showMsgError(control: FormControl, error: string) {
+        return (control.touched || control.dirty) && control.hasError(error);
+    }
+
     save() {
         const data = this.form.value;
         console.log(this.form);

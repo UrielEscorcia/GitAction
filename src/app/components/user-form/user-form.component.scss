@@ -3,6 +3,10 @@
 
     .title {
         @apply font-light text-lg text-slate-800;
+
+        &.error {
+            @apply text-red-400;
+        }
     }
 
     .input-text {

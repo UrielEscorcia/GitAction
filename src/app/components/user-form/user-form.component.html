@@ -3,11 +3,11 @@
         <h1 class="font-medium text-4xl text-center">Form Data</h1>
         <form class="p-2 space-y-4" [formGroup]="form">
             <div class="input-group">
-                <label class="title" for="username">Username</label>
+                <label class="title" [class.error]="invalidInput(formUsername)" for="username">Username</label>
                 <div>
-                    <input [class.input-error]="formUsername.invalid && (formUsername.touched || formUsername.dirty)" class="input-text" type="text" formControlName="username" name="username" id="username" />
+                    <input [class.input-error]="invalidInput(formUsername)" class="input-text" type="text" formControlName="username" name="username" id="username" />
                     <div class="h-5 w-full">
-                        <small class="error-message" *ngIf="(formUsername.touched || formUsername.dirty) && formUsername.hasError('required')" >El campo es requerido.</small>
+                        <small class="error-message" *ngIf="showMsgError(formUsername, 'required')" >El campo es requerido.</small>
                     </div>
                 </div>
             </div>
@@ -27,22 +27,22 @@
             <div class="space-y-2" formGroupName="person">
                 <h3 class="font-medium text-xl">Person Data</h3>
                 <div class="input-group">
-                    <label class="title" for="name">Name</label>
+                    <label class="title" [class.error]="invalidInput(formPersonFullname)" for="name">Name</label>
                     <div>
-                        <input [class.input-error]="formPersonFullname.invalid && (formPersonFullname.touched || formPersonFullname.dirty)" class="input-text" type="text" formControlName="fullname" name="name" id="name"  />
+                        <input [class.input-error]="invalidInput(formPersonFullname)" class="input-text" type="text" formControlName="fullname" name="name" id="name"  />
                         <div class="h-5 w-full">
-                            <small class="error-message" *ngIf="(formPersonFullname.touched || formPersonFullname.dirty) && formPersonFullname.hasError('required')" >El campo es requerido.</small>
-                            <small class="error-message" *ngIf="(formPersonFullname.touched || formPersonFullname.dirty) && formPersonFullname.hasError('minlength')" >El campo debe tener minimo 3.</small>
+                            <small class="error-message" *ngIf="showMsgError(formPersonFullname, 'required')" >El campo es requerido.</small>
+                            <small class="error-message" *ngIf="showMsgError(formPersonFullname, 'minlength')" >El campo debe tener minimo 3.</small>
                         </div>
                     </div>
                 </div>
                 <div class="input-group">
-                    <label class="title" for="email">Email</label>
+                    <label class="title" [class.error]="invalidInput(formPersonEmail)" for="email">Email</label>
                     <div>
-                        <input [class.input-error]="formPersonEmail.invalid && (formPersonEmail.touched || formPersonEmail.dirty)" class="input-text" type="email" formControlName="email" name="email" id="email"/>
+                        <input [class.input-error]="invalidInput(formPersonEmail)" class="input-text" type="email" formControlName="email" name="email" id="email"/>
                         <div class="h-5 w-full">
-                            <small class="error-message" *ngIf="(formPersonEmail.touched || formPersonEmail.dirty) && formPersonEmail.hasError('required')" >El campo es requerido.</small>
-                            <small class="error-message" *ngIf="(formPersonEmail.touched || formPersonEmail.dirty) && formPersonEmail.hasError('email')" >El campo debe ser email valido.</small>
+                            <small class="error-message" *ngIf="showMsgError(formPersonEmail, 'required')" >El campo es requerido.</small>
+                            <small class="error-message" *ngIf="showMsgError(formPersonEmail, 'email')" >El campo debe ser email valido.</small>
                         </div>
                     </div>
                 </div>
