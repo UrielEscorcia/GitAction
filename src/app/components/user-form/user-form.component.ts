@@ -26,6 +26,22 @@ export class UserFormComponent implements OnInit {
         });
     }
 
+    get formUsername() {
+        return this.form.get('username') as FormControl;
+    }
+
+    get formType() {
+        return this.form.get('type') as FormControl;
+    }
+
+    get formPersonFullname() {
+        return this.form.get('person.fullname') as FormControl;
+    }
+
+    get formPersonEmail() {
+        return this.form.get('person.email') as FormControl;
+    }
+
     save() {
         const data = this.form.value;
         console.log(this.form);
