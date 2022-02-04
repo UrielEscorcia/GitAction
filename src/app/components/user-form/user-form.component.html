@@ -7,7 +7,7 @@
                 <div>
                     <input [class.input-error]="invalidInput(formUsername)" class="input-text" type="text" formControlName="username" name="username" id="username" />
                     <div class="h-5 w-full">
-                        <small class="error-message" *ngIf="showMsgError(formUsername, 'required')" >El campo es requerido.</small>
+                        <small class="error-message" *ngIf="showMsgError(formUsername)" >{{ getErrorMessage(formUsername) }}</small>
                     </div>
                 </div>
             </div>
@@ -31,8 +31,7 @@
                     <div>
                         <input [class.input-error]="invalidInput(formPersonFullname)" class="input-text" type="text" formControlName="fullname" name="name" id="name"  />
                         <div class="h-5 w-full">
-                            <small class="error-message" *ngIf="showMsgError(formPersonFullname, 'required')" >El campo es requerido.</small>
-                            <small class="error-message" *ngIf="showMsgError(formPersonFullname, 'minlength')" >El campo debe tener minimo 3.</small>
+                            <small class="error-message" *ngIf="showMsgError(formPersonFullname)"  >{{ getErrorMessage(formPersonFullname) }}</small>
                         </div>
                     </div>
                 </div>
@@ -41,8 +40,7 @@
                     <div>
                         <input [class.input-error]="invalidInput(formPersonEmail)" class="input-text" type="email" formControlName="email" name="email" id="email"/>
                         <div class="h-5 w-full">
-                            <small class="error-message" *ngIf="showMsgError(formPersonEmail, 'required')" >El campo es requerido.</small>
-                            <small class="error-message" *ngIf="showMsgError(formPersonEmail, 'email')" >El campo debe ser email valido.</small>
+                            <small class="error-message" *ngIf="showMsgError(formPersonEmail)" >{{ getErrorMessage(formPersonEmail) }}</small>
                         </div>
                     </div>
                 </div>

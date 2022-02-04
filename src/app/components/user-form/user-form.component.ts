@@ -5,6 +5,8 @@ import {
     FormGroup,
     Validators,
 } from '@angular/forms';
+import { RxFormBuilder } from '@rxweb/reactive-form-validators';
+import { User } from '../../models/user';
 
 @Component({
     selector: 'user-form',
@@ -13,17 +15,20 @@ import {
 })
 export class UserFormComponent implements OnInit {
     form!: FormGroup;
-    constructor(private fBuilder: FormBuilder) {}
+    constructor(private fBuilder: RxFormBuilder) {}
 
     ngOnInit(): void {
-        this.form = this.fBuilder.group({
-            username: ['', Validators.required],
-            type: ['MASTER', Validators.required],
-            person: this.fBuilder.group({
-                fullname: ['', [Validators.required, Validators.minLength(3)]],
-                email: ['', [Validators.required, Validators.email]],
-            }),
-        });
+        const user = new User();
+        this.form = this.fBuilder.formGroup<User>(user);
+        console.log(this.form);
+        // this.form = this.fBuilder.group({
+        //     username: ['', Validators.required],
+        //     type: ['MASTER', Validators.required],
+        //     person: this.fBuilder.group({
+        //         fullname: ['', [Validators.required, Validators.minLength(3)]],
+        //         email: ['', [Validators.required, Validators.email]],
+        //     }),
+        // });
     }
 
     get formUsername() {
@@ -46,11 +51,20 @@ export class UserFormComponent implements OnInit {
         return control.invalid && (control.dirty || control.touched);
     }
 
-    showMsgError(control: FormControl, error: string) {
-        return (control.touched || control.dirty) && control.hasError(error);
+    showMsgError(control: FormControl) {
+        return (control.touched || control.dirty) && control.errors;
+    }
+
+    getErrorMessage(control: FormControl) {
+        for (const err in control.errors) {
+            if (control.errors.hasOwnProperty(err)) {
+                return control.errors[err].message;
+            }
+        }
     }
 
     save() {
+        this.form.controls;
         const data = this.form.value;
         console.log(this.form);
         console.log(data);
