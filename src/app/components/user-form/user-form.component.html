@@ -3,11 +3,27 @@
         <h1 class="font-medium text-4xl text-center">Form Data</h1>
         <form class="p-2 space-y-4" [formGroup]="form">
             <div class="input-group">
-                <label class="title" [class.error]="invalidInput(formUsername)" for="username">Username</label>
+                <label
+                    class="title"
+                    [class.error]="invalidInput(formUsername)"
+                    for="username"
+                    >Username</label
+                >
                 <div>
-                    <input [class.input-error]="invalidInput(formUsername)" class="input-text" type="text" formControlName="username" name="username" id="username" />
+                    <input
+                        [class.input-error]="invalidInput(formUsername)"
+                        class="input-text"
+                        type="text"
+                        formControlName="username"
+                        name="username"
+                        id="username"
+                    />
                     <div class="h-5 w-full">
-                        <small class="error-message" *ngIf="showMsgError(formUsername)" >{{ getErrorMessage(formUsername) }}</small>
+                        <small
+                            class="error-message"
+                            *ngIf="showMsgError(formUsername)"
+                            >{{ getErrorMessage(formUsername) }}</small
+                        >
                     </div>
                 </div>
             </div>
@@ -15,11 +31,23 @@
                 <label class="title" for="type">Type</label>
                 <div class="flex justify-star gap-6">
                     <div class="space-x-2">
-                        <input class="input-radio" type="radio" formControlName="type" name="type" value="MASTER" >
+                        <input
+                            class="input-radio"
+                            type="radio"
+                            formControlName="type"
+                            name="type"
+                            value="MASTER"
+                        />
                         <span class="content">Master</span>
                     </div>
                     <div class="space-x-2">
-                        <input class="input-radio" type="radio" formControlName="type" name="type" value="ADMINISTRADOR" >
+                        <input
+                            class="input-radio"
+                            type="radio"
+                            formControlName="type"
+                            name="type"
+                            value="ADMINISTRADOR"
+                        />
                         <span class="content">Admin</span>
                     </div>
                 </div>
@@ -27,26 +55,70 @@
             <div class="space-y-2" formGroupName="person">
                 <h3 class="font-medium text-xl">Person Data</h3>
                 <div class="input-group">
-                    <label class="title" [class.error]="invalidInput(formPersonFullname)" for="name">Name</label>
+                    <label
+                        class="title"
+                        [class.error]="invalidInput(formPersonFullname)"
+                        for="name"
+                        >Name</label
+                    >
                     <div>
-                        <input [class.input-error]="invalidInput(formPersonFullname)" class="input-text" type="text" formControlName="fullname" name="name" id="name"  />
+                        <input
+                            [class.input-error]="
+                                invalidInput(formPersonFullname)
+                            "
+                            class="input-text"
+                            type="text"
+                            formControlName="fullname"
+                            name="name"
+                            id="name"
+                        />
                         <div class="h-5 w-full">
-                            <small class="error-message" *ngIf="showMsgError(formPersonFullname)"  >{{ getErrorMessage(formPersonFullname) }}</small>
+                            <small
+                                class="error-message"
+                                *ngIf="showMsgError(formPersonFullname)"
+                                > {{
+                                    getErrorMessage(formPersonFullname)
+                                }}</small
+                            >
                         </div>
                     </div>
                 </div>
                 <div class="input-group">
-                    <label class="title" [class.error]="invalidInput(formPersonEmail)" for="email">Email</label>
+                    <label
+                        class="title"
+                        [class.error]="invalidInput(formPersonEmail)"
+                        for="email"
+                        >Email</label
+                    >
                     <div>
-                        <input [class.input-error]="invalidInput(formPersonEmail)" class="input-text" type="email" formControlName="email" name="email" id="email"/>
+                        <input
+                            [class.input-error]="invalidInput(formPersonEmail)"
+                            class="input-text"
+                            type="email"
+                            formControlName="email"
+                            name="email"
+                            id="email"
+                        />
                         <div class="h-5 w-full">
-                            <small class="error-message" *ngIf="showMsgError(formPersonEmail)" >{{ getErrorMessage(formPersonEmail) }}</small>
+                            <small
+                                class="error-message"
+                                *ngIf="showMsgError(formPersonEmail)"
+                            >
+                                {{ getErrorMessage(formPersonEmail) }}
+                            </small>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="mt-6 flex">
-                <button type="button" [disabled]="form.invalid" (click)="save()" class="submit">Guardar</button>
+                <button
+                    type="button"
+                    [disabled]="form.invalid"
+                    (click)="save()"
+                    class="submit"
+                >
+                    Guardar
+                </button>
             </div>
         </form>
     </div>
