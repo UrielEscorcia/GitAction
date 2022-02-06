@@ -1,12 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import {
-    FormBuilder,
-    FormControl,
-    FormGroup,
-    Validators,
-} from '@angular/forms';
-import { RxFormBuilder } from '@rxweb/reactive-form-validators';
-import { User } from '../../models/user';
+
+import { RxFormBuilder, IFormGroup, IAbstractControl, RxFormArray } from '@rxweb/reactive-form-validators';
+import { User, Person } from '../../models/user';
+import { IModelForm, isInvalid, showErrorMessage, getErrorMessage } from '../../models/UIRxForms'
 
 @Component({
     selector: 'user-form',
@@ -14,13 +10,15 @@ import { User } from '../../models/user';
     styleUrls: ['./user-form.component.scss'],
 })
 export class UserFormComponent implements OnInit {
-    form!: FormGroup;
-    constructor(private fBuilder: RxFormBuilder) {}
+    form!: IModelForm<User>
+
+    constructor(private fBuilder: RxFormBuilder) {
+        const user = new User();
+        this.form = this.fBuilder.formGroup(user) as IModelForm<User>
+    }
 
     ngOnInit(): void {
-        const user = new User();
-        this.form = this.fBuilder.formGroup<User>(user);
-        console.log(this.form);
+
         // this.form = this.fBuilder.group({
         //     username: ['', Validators.required],
         //     type: ['MASTER', Validators.required],
@@ -31,36 +29,21 @@ export class UserFormComponent implements OnInit {
         // });
     }
 
-    get formUsername() {
-        return this.form.get('username') as FormControl;
+    get formPerson(){
+        const person = this.form.controls.person as IFormGroup<Person>;
+        return person
     }
 
-    get formType() {
-        return this.form.get('type') as FormControl;
+    isInvalid(control?: IAbstractControl | RxFormArray | IFormGroup<any>){
+        return isInvalid(control as IAbstractControl);
     }
 
-    get formPersonFullname() {
-        return this.form.get('person.fullname') as FormControl;
+    showErrorMessage(control?: IAbstractControl | RxFormArray | IFormGroup<any>) {
+        return showErrorMessage(control as IAbstractControl)
     }
 
-    get formPersonEmail() {
-        return this.form.get('person.email') as FormControl;
-    }
-
-    invalidInput(control: FormControl) {
-        return control.invalid && (control.dirty || control.touched);
-    }
-
-    showMsgError(control: FormControl) {
-        return (control.touched || control.dirty) && control.errors;
-    }
-
-    getErrorMessage(control: FormControl) {
-        for (const err in control.errors) {
-            if (control.errors.hasOwnProperty(err)) {
-                return control.errors[err].message;
-            }
-        }
+    getErrorMessage(control?: IAbstractControl | RxFormArray | IFormGroup<any>) {
+        return getErrorMessage(control as IAbstractControl);
     }
 
     save() {

@@ -5,13 +5,13 @@
             <div class="input-group">
                 <label
                     class="title"
-                    [class.error]="invalidInput(formUsername)"
-                    for="username"
-                    >Username</label
-                >
+                    [class.error]="isInvalid(form.controls.username)"
+                    for="username">
+                    Username
+                </label>
                 <div>
                     <input
-                        [class.input-error]="invalidInput(formUsername)"
+                        [class.input-error]="isInvalid(form.controls.username)"
                         class="input-text"
                         type="text"
                         formControlName="username"
@@ -21,9 +21,9 @@
                     <div class="h-5 w-full">
                         <small
                             class="error-message"
-                            *ngIf="showMsgError(formUsername)"
-                            >{{ getErrorMessage(formUsername) }}</small
-                        >
+                            *ngIf="showErrorMessage(form.controls.username)">
+                            {{ getErrorMessage(form.controls.username) }}
+                        </small>
                     </div>
                 </div>
             </div>
@@ -57,15 +57,13 @@
                 <div class="input-group">
                     <label
                         class="title"
-                        [class.error]="invalidInput(formPersonFullname)"
+                        [class.error]="isInvalid(formPerson.controls.fullname)"
                         for="name"
                         >Name</label
                     >
                     <div>
                         <input
-                            [class.input-error]="
-                                invalidInput(formPersonFullname)
-                            "
+                            [class.input-error]="isInvalid(formPerson.controls.fullname)"
                             class="input-text"
                             type="text"
                             formControlName="fullname"
@@ -75,10 +73,7 @@
                         <div class="h-5 w-full">
                             <small
                                 class="error-message"
-                                *ngIf="showMsgError(formPersonFullname)"
-                                > {{
-                                    getErrorMessage(formPersonFullname)
-                                }}</small
+                                *ngIf="showErrorMessage(formPerson.controls.fullname)"> {{ getErrorMessage(formPerson.controls.fullname) }} </small
                             >
                         </div>
                     </div>
@@ -86,13 +81,12 @@
                 <div class="input-group">
                     <label
                         class="title"
-                        [class.error]="invalidInput(formPersonEmail)"
-                        for="email"
-                        >Email</label
+                        [class.error]="isInvalid(formPerson.controls.email)"
+                        for="email"> Email </label
                     >
                     <div>
                         <input
-                            [class.input-error]="invalidInput(formPersonEmail)"
+                            [class.input-error]="isInvalid(formPerson.controls.email)"
                             class="input-text"
                             type="email"
                             formControlName="email"
@@ -102,10 +96,7 @@
                         <div class="h-5 w-full">
                             <small
                                 class="error-message"
-                                *ngIf="showMsgError(formPersonEmail)"
-                            >
-                                {{ getErrorMessage(formPersonEmail) }}
-                            </small>
+                                *ngIf="showErrorMessage(formPerson.controls.email)"> {{ getErrorMessage(formPerson.controls.email) }} </small>
                         </div>
                     </div>
                 </div>

@@ -4,8 +4,10 @@ import {
     minLength,
     email,
     propObject,
-    trim,
+    prop,
+    notEmpty,
 } from '@rxweb/reactive-form-validators';
+
 
 export enum TypeUser {
     MASTER = 'MASTER',
@@ -13,12 +15,12 @@ export enum TypeUser {
 }
 
 export class Person {
-    @required({ message: 'El nombre es requerido.' })
+
     @minLength({
         value: 3,
         message: 'El nombre debe tener al menos 3 caracteres.',
     })
-    @trim()
+    @notEmpty({ message: 'El nombre es requerido.' })
     fullname?: string;
 
     @required({ message: 'El email es requerido.' })
@@ -39,6 +41,7 @@ export class Person {
 }
 
 export class User {
+    @prop()
     id?: string;
 
     @required({ message: 'El nombre de usuario es requerido.' })
@@ -50,6 +53,7 @@ export class User {
     @required({ message: 'El tipo de usuario es requerido.' })
     type: TypeUser;
 
+    @prop()
     createdAt: Timestamp;
 
     constructor() {
@@ -81,3 +85,5 @@ export class User {
         return new User().fromFire(investor);
     }
 }
+
+
