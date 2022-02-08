@@ -1,0 +1,15 @@
+<div class="input-group">
+    <label class="title" [class.error]="isInvalid()" [for]="name">
+        {{ title }}
+    </label>
+    <div>
+        <input class="input-text" [class.input-error]="isInvalid()" [type]="inputType" [name]="name" [id]="name"
+            [placeholder]="placeholder" [value]="value" (input)="onInput($event)" (blur)="onTouch()"
+            [disabled]="isDisabled" />
+        <div class="h-5 w-full">
+            <small class="error-message" *ngIf="showErrorMessage()">
+                {{ getErrorMessage() }}
+            </small>
+        </div>
+    </div>
+</div>

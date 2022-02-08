@@ -2,19 +2,10 @@
     <div class="flex flex-col font-sans">
         <h1 class="font-medium text-4xl text-center">Form Data</h1>
         <form class="p-2 space-y-4" [formGroup]="form">
-            <div class="input-group">
-                <label class="title" [class.error]="isInvalid(form.controls.username)" for="username">
-                    Username
-                </label>
-                <div>
-                    <input [class.input-error]="isInvalid(form.controls.username)" class="input-text" type="text"
-                        formControlName="username" name="username" id="username" />
-                    <div class="h-5 w-full">
-                        <small class="error-message" *ngIf="showErrorMessage(form.controls.username)">
-                            {{ getErrorMessage(form.controls.username) }}
-                        </small>
-                    </div>
-                </div>
+            <div>
+                <rx-input title="Usuario" name="username" placeholder="@juanes" inputType="text"
+                    formControlName="username" [control]="form.controls.username">
+                </rx-input>
             </div>
             <div class="input-group">
                 <label class="title" for="type">Type</label>
@@ -32,30 +23,14 @@
             </div>
             <div class="space-y-2" formGroupName="person">
                 <h3 class="font-medium text-xl">Person Data</h3>
-                <div class="input-group">
-                    <label class="title" [class.error]="isInvalid(formPerson.controls.fullname)" for="name">Name</label>
-                    <div>
-                        <input [class.input-error]="isInvalid(formPerson.controls.fullname)" class="input-text"
-                            type="text" formControlName="fullname" name="name" id="name" />
-                        <div class="h-5 w-full">
-                            <small class="error-message" *ngIf="showErrorMessage(formPerson.controls.fullname)">
-                                {{ getErrorMessage(formPerson.controls.fullname) }}
-                            </small>
-                        </div>
-                    </div>
+                <div>
+                    <rx-input title="Name" name="name" placeholder="Juan Pepe" inputType="text"
+                        formControlName="fullname" [control]="formPerson.controls.fullname"></rx-input>
                 </div>
-                <div class="input-group">
-                    <label class="title" [class.error]="isInvalid(formPerson.controls.email)" for="email"> Email
-                    </label>
-                    <div>
-                        <input [class.input-error]="isInvalid(formPerson.controls.email)" class="input-text"
-                            type="email" formControlName="email" name="email" id="email" />
-                        <div class="h-5 w-full">
-                            <small class="error-message" *ngIf="showErrorMessage(formPerson.controls.email)">
-                                {{ getErrorMessage(formPerson.controls.email) }}
-                            </small>
-                        </div>
-                    </div>
+
+                <div>
+                    <rx-input title="Email" name="email" placeholder="juan@email.com" inputType="email"
+                        formControlName="email" [control]="formPerson.controls.email"></rx-input>
                 </div>
             </div>
             <div class="mt-6 flex">
