@@ -4,6 +4,7 @@ import { RxFormBuilder, IFormGroup } from '@rxweb/reactive-form-validators'
 import { User, Person, TypeUser } from '../../models/user'
 import { IModelForm } from '../../models/UIRxForms'
 import { RxOptions } from '../rx-select/rx-select.component'
+import { Observable, of } from 'rxjs'
 
 @Component({
     selector: 'user-form',
@@ -30,6 +31,10 @@ export class UserFormComponent implements OnInit {
     }
 
     ngOnInit(): void {}
+
+    get asyncOptions(): Observable<RxOptions[]> {
+        return of(this.selectOptions)
+    }
 
     get formPerson() {
         const person = this.form.controls.person as IFormGroup<Person>

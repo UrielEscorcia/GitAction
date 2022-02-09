@@ -8,7 +8,7 @@
                 </rx-input>
             </div>
             <div>
-                <rx-select title="Type" placeholder="Selecciona..." name="type" [options]="selectOptions"
+                <rx-select title="Type" placeholder="Selecciona..." name="type" [asyncOptions]="asyncOptions"
                     formControlName="type" [control]="form.controls.type"></rx-select>
             </div>
             <div class="input-group">

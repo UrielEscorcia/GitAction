@@ -10,6 +10,7 @@ import {
     showErrorMessage,
     getErrorMessage,
 } from '../../models/UIRxForms'
+import { Observable, Subscription } from 'rxjs'
 
 export interface RxOptions {
     label: string
@@ -33,16 +34,31 @@ export class RxSelectComponent implements OnInit, ControlValueAccessor {
     @Input() placeholder: string = ''
     @Input() name: string = 'name'
     @Input() options: RxOptions[] = []
+    @Input() asyncOptions?: Observable<RxOptions[]>
 
     @Input() isDisabled: boolean = false
     @Input() control?: IAbstractControl | RxFormArray | IFormGroup<any>
 
+    _options: RxOptions[] = []
+    private asyncOpts$?: Subscription
     value: any = ''
     onChange = (_: any) => {}
     onTouch = () => {}
 
     constructor() {}
-    ngOnInit(): void {}
+    ngOnInit(): void {
+        if (this.asyncOptions) {
+            this.asyncOpts$ = this.asyncOptions.subscribe((options) => {
+                this._options = options
+            })
+        } else {
+            this._options = this.options
+        }
+    }
+
+    ngOnDestroy(): void {
+        this.asyncOpts$?.unsubscribe()
+    }
 
     get idField() {
         return this.name ?? this.title
