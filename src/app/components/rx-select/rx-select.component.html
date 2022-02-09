@@ -1,0 +1,19 @@
+<div class="input-group">
+    <label class="title" [class.error]="isInvalid()" [for]="idField">
+        {{ title }}
+    </label>
+
+    <select class="input-select" [class.input-error]="isInvalid()" [name]="name" [id]="idField" [value]="value"
+        (input)="onInput($event)" (blur)="onTouch()" [disabled]="isDisabled">
+        <option [ngValue]="null" [disabled]="true">{{ placeholder }}</option>
+        <option [value]="op.value" *ngFor="let op of options">{{ op.label }}</option>
+    </select>
+
+    <div>
+        <div class="h-5 w-full">
+            <small class="error-message" *ngIf="showErrorMessage()">
+                {{ getErrorMessage() }}
+            </small>
+        </div>
+    </div>
+</div>

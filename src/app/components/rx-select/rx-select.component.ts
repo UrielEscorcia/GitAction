@@ -11,63 +11,46 @@ import {
     getErrorMessage,
 } from '../../models/UIRxForms'
 
+export interface RxOptions {
+    label: string
+    value: any
+}
+
 @Component({
-    selector: 'rx-input',
-    templateUrl: './rx-input.component.html',
-    styleUrls: ['./rx-input.component.scss'],
+    selector: 'rx-select',
+    templateUrl: './rx-select.component.html',
+    styleUrls: ['./rx-select.component.scss'],
     providers: [
         {
             provide: NG_VALUE_ACCESSOR,
             multi: true,
-            useExisting: RxInputComponent,
+            useExisting: RxSelectComponent,
         },
     ],
 })
-export class RxInputComponent implements OnInit, ControlValueAccessor {
+export class RxSelectComponent implements OnInit, ControlValueAccessor {
     @Input() title: string = 'Titulo'
     @Input() placeholder: string = ''
     @Input() name: string = 'name'
-    @Input() inputType:
-        | 'text'
-        | 'email'
-        | 'password'
-        | 'number'
-        | 'search'
-        | 'tel'
-        | 'url'
-        | 'currency'
-        | 'textarea' = 'text'
-    @Input() control?: IAbstractControl | RxFormArray | IFormGroup<any>
+    @Input() options: RxOptions[] = []
 
-    @Input() currencyOptions: any = {
-        thousands: ',',
-        decimal: '.',
-        allowNegative: false,
-        precision: 2,
-    }
     @Input() isDisabled: boolean = false
+    @Input() control?: IAbstractControl | RxFormArray | IFormGroup<any>
 
     value: any = ''
     onChange = (_: any) => {}
     onTouch = () => {}
 
     constructor() {}
-
     ngOnInit(): void {}
 
     get idField() {
         return this.name ?? this.title
     }
 
-    onCurrencyInput($event: Event) {
-        if (this.isDisabled) return
-        this.onTouch()
-        this.onChange(this.value)
-    }
-
     onInput(value: Event) {
         if (this.isDisabled) return
-        this.value = (value.target as HTMLInputElement).value
+        this.value = (value.target as HTMLSelectElement).value
         this.onTouch()
         this.onChange(this.value)
     }

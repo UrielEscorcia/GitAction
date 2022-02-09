@@ -7,6 +7,10 @@
                     formControlName="username" [control]="form.controls.username">
                 </rx-input>
             </div>
+            <div>
+                <rx-select title="Type" placeholder="Selecciona..." name="type" [options]="selectOptions"
+                    formControlName="type" [control]="form.controls.type"></rx-select>
+            </div>
             <div class="input-group">
                 <label class="title" for="type">Type</label>
                 <div class="flex justify-star gap-6">

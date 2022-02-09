@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core'
 
 import { RxFormBuilder, IFormGroup } from '@rxweb/reactive-form-validators'
-import { User, Person } from '../../models/user'
+import { User, Person, TypeUser } from '../../models/user'
 import { IModelForm } from '../../models/UIRxForms'
+import { RxOptions } from '../rx-select/rx-select.component'
 
 @Component({
     selector: 'user-form',
@@ -11,6 +12,17 @@ import { IModelForm } from '../../models/UIRxForms'
 })
 export class UserFormComponent implements OnInit {
     form!: IModelForm<User>
+
+    selectOptions: RxOptions[] = [
+        {
+            label: 'Master',
+            value: TypeUser.MASTER,
+        },
+        {
+            label: 'Administrador',
+            value: TypeUser.ADMIN,
+        },
+    ]
 
     constructor(private fBuilder: RxFormBuilder) {
         const user = new User()
