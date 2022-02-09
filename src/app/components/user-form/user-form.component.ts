@@ -1,18 +1,8 @@
 import { Component, OnInit } from '@angular/core'
 
-import {
-    RxFormBuilder,
-    IFormGroup,
-    IAbstractControl,
-    RxFormArray,
-} from '@rxweb/reactive-form-validators'
+import { RxFormBuilder, IFormGroup } from '@rxweb/reactive-form-validators'
 import { User, Person } from '../../models/user'
-import {
-    IModelForm,
-    isInvalid,
-    showErrorMessage,
-    getErrorMessage,
-} from '../../models/UIRxForms'
+import { IModelForm } from '../../models/UIRxForms'
 
 @Component({
     selector: 'user-form',

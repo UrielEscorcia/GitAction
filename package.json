@@ -21,6 +21,7 @@
     "@angular/router": "~13.1.0",
     "@rxweb/reactive-form-validators": "^2.1.6",
     "firebase": "^9.4.0",
+    "ngx-currency": "^2.5.3",
     "rxfire": "^6.0.0",
     "rxjs": "~7.4.0",
     "tslib": "^2.3.0",

@@ -24,7 +24,7 @@
             <div class="space-y-2" formGroupName="person">
                 <h3 class="font-medium text-xl">Person Data</h3>
                 <div>
-                    <rx-input title="Name" name="name" placeholder="Juan Pepe" inputType="text"
+                    <rx-input title="Name" name="name" placeholder="Juan Pepe" inputType="textarea"
                         formControlName="fullname" [control]="formPerson.controls.fullname"></rx-input>
                 </div>
 
@@ -32,6 +32,10 @@
                     <rx-input title="Email" name="email" placeholder="juan@email.com" inputType="email"
                         formControlName="email" [control]="formPerson.controls.email"></rx-input>
                 </div>
+            </div>
+            <div>
+                <rx-input title="Price" name="price" inputType="currency" formControlName="amount"
+                    [control]="form.controls.amount"></rx-input>
             </div>
             <div class="mt-6 flex">
                 <button type="button" [disabled]="form.invalid" (click)="save()" class="submit">

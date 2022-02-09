@@ -32,18 +32,38 @@ export class RxInputComponent implements OnInit, ControlValueAccessor {
         | 'email'
         | 'password'
         | 'number'
+        | 'search'
         | 'tel'
-        | 'url' = 'text'
+        | 'url'
+        | 'currency'
+        | 'textarea' = 'text'
     @Input() control?: IAbstractControl | RxFormArray | IFormGroup<any>
 
+    @Input() currencyOptions: any = {
+        thousands: ',',
+        decimal: '.',
+        allowNegative: false,
+        precision: 2,
+    }
+    @Input() isDisabled: boolean = false
+
     value: string = ''
-    isDisabled: boolean = false
     onChange = (_: any) => {}
     onTouch = () => {}
 
     constructor() {}
 
     ngOnInit(): void {}
+
+    get idField() {
+        return this.name ?? this.title
+    }
+
+    onCurrencyInput($event: Event) {
+        if (this.isDisabled) return
+        this.onTouch()
+        this.onChange(this.value)
+    }
 
     onInput(value: Event) {
         if (this.isDisabled) return
