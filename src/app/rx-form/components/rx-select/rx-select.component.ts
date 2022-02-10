@@ -16,19 +16,15 @@ import {
     isInvalid,
     showErrorMessage,
     getErrorMessage,
-} from '../../models/UIRxForms'
+    RxOptions,
+} from '../../models'
 import { Observable, Subscription } from 'rxjs'
 import { gsap, Elastic } from 'gsap'
-
-export interface RxOptions {
-    label: string
-    value: any
-}
 
 @Component({
     selector: 'rx-select',
     templateUrl: './rx-select.component.html',
-    styleUrls: ['./rx-select.component.scss'],
+    styleUrls: ['../style.scss'],
     providers: [
         {
             provide: NG_VALUE_ACCESSOR,
@@ -59,6 +55,7 @@ export class RxSelectComponent implements OnInit, ControlValueAccessor {
 
     @Input() isDisabled: boolean = false
     @Input() control?: IAbstractControl | RxFormArray | IFormGroup<any>
+    @Input() styleClass: string = 'form-field-group'
 
     _options: RxOptions[] = []
     private asyncOpts$?: Subscription
@@ -194,6 +191,7 @@ export class RxSelectComponent implements OnInit, ControlValueAccessor {
     }
 
     private documentClick(event: any) {
+        if (this.native) return
         if (event.target != this.rxSelectInput.nativeElement) {
             this.hideOptionsAnimation()
         }

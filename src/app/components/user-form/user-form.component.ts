@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core'
 
 import { RxFormBuilder, IFormGroup } from '@rxweb/reactive-form-validators'
-import { User, Person, TypeUser } from '../../models/user'
-import { IModelForm } from '../../models/UIRxForms'
-import { RxOptions } from '../rx-select/rx-select.component'
+import { User, Person, TypeUser } from '@models/user'
+import { RxOptions, IModelForm } from '@rxform/models'
 import { Observable, of } from 'rxjs'
 
 @Component({

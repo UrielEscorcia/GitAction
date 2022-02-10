@@ -1,15 +1,4 @@
-import {
-    AppFormGroup,
-    IAbstractControl,
-    IFormGroup,
-    RxFormArray,
-} from '@rxweb/reactive-form-validators'
-
-export interface IModelForm<T> extends AppFormGroup<T> {
-    controls: {
-        [key in keyof T]: IAbstractControl | IFormGroup<T[key]> | RxFormArray
-    }
-}
+import { IAbstractControl } from '@rxweb/reactive-form-validators'
 
 export function isInvalid(control?: IAbstractControl) {
     return control?.invalid && (control?.dirty || control?.touched)

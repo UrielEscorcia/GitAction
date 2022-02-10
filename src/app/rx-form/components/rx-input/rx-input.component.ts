@@ -5,16 +5,12 @@ import {
     IAbstractControl,
     RxFormArray,
 } from '@rxweb/reactive-form-validators'
-import {
-    isInvalid,
-    showErrorMessage,
-    getErrorMessage,
-} from '../../models/UIRxForms'
+import { isInvalid, showErrorMessage, getErrorMessage } from '../../models'
 
 @Component({
     selector: 'rx-input',
     templateUrl: './rx-input.component.html',
-    styleUrls: ['./rx-input.component.scss'],
+    styleUrls: ['../style.scss'],
     providers: [
         {
             provide: NG_VALUE_ACCESSOR,
@@ -46,7 +42,7 @@ export class RxInputComponent implements OnInit, ControlValueAccessor {
         precision: 2,
     }
     @Input() isDisabled: boolean = false
-    @Input() styleClass: string = 'input-group'
+    @Input() styleClass: string = 'form-field-group'
 
     value: any = ''
     onChange = (_: any) => {}
