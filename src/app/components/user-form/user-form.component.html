@@ -9,9 +9,9 @@
             </div>
             <div>
                 <rx-select title="Type" placeholder="Selecciona..." name="type" [asyncOptions]="asyncOptions"
-                    formControlName="type" [control]="form.controls.type"></rx-select>
+                    formControlName="type" [native]="true" [control]="form.controls.type"></rx-select>
             </div>
-            <div class="input-group">
+            <!-- <div class="input-group">
                 <label class="title" for="type">Type</label>
                 <div class="flex justify-star gap-6">
                     <div class="space-x-2">
@@ -24,7 +24,7 @@
                         <span class="content">Admin</span>
                     </div>
                 </div>
-            </div>
+            </div> -->
             <div class="space-y-2" formGroupName="person">
                 <h3 class="font-medium text-xl">Person Data</h3>
                 <div>

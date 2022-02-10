@@ -1,4 +1,11 @@
-import { Component, OnInit, Input } from '@angular/core'
+import {
+    Component,
+    ElementRef,
+    OnInit,
+    ViewChild,
+    HostListener,
+    Input,
+} from '@angular/core'
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms'
 import {
     IFormGroup,
@@ -11,6 +18,7 @@ import {
     getErrorMessage,
 } from '../../models/UIRxForms'
 import { Observable, Subscription } from 'rxjs'
+import { gsap, Elastic } from 'gsap'
 
 export interface RxOptions {
     label: string
@@ -28,12 +36,25 @@ export interface RxOptions {
             useExisting: RxSelectComponent,
         },
     ],
+    host: {
+        '(document:click)': 'documentClick($event)',
+    },
 })
 export class RxSelectComponent implements OnInit, ControlValueAccessor {
+    @HostListener('window:keydown', ['$event'])
+    keyboardInput(event: any) {
+        if (event.keyCode == 27) {
+            this.hideOptionsAnimation()
+        }
+    }
+    @ViewChild('rxSelectInput') rxSelectInput!: ElementRef<HTMLDivElement>
+    @ViewChild('selectOptions') selectOptions!: ElementRef<HTMLDivElement>
+
     @Input() title: string = 'Titulo'
     @Input() placeholder: string = ''
     @Input() name: string = 'name'
     @Input() options: RxOptions[] = []
+    @Input() native: boolean = false
     @Input() asyncOptions?: Observable<RxOptions[]>
 
     @Input() isDisabled: boolean = false
@@ -41,9 +62,11 @@ export class RxSelectComponent implements OnInit, ControlValueAccessor {
 
     _options: RxOptions[] = []
     private asyncOpts$?: Subscription
-    value: any = ''
+    value?: any
     onChange = (_: any) => {}
     onTouch = () => {}
+
+    private openOptions = false
 
     constructor() {}
     ngOnInit(): void {
@@ -62,6 +85,17 @@ export class RxSelectComponent implements OnInit, ControlValueAccessor {
 
     get idField() {
         return this.name ?? this.title
+    }
+
+    get selectedOrPlaceholder() {
+        if (this.value) {
+            const op = this._options.find(
+                (item) =>
+                    JSON.stringify(item.value) === JSON.stringify(this.value)
+            )
+            return op?.label ?? this.placeholder
+        }
+        return this.placeholder
     }
 
     onInput(value: Event) {
@@ -101,5 +135,67 @@ export class RxSelectComponent implements OnInit, ControlValueAccessor {
         return this.control
             ? getErrorMessage(this.control as IAbstractControl)
             : ''
+    }
+
+    openOptionsSelect($event: Event): void {
+        $event.stopPropagation()
+        $event.preventDefault()
+        if (this.isDisabled) return
+        this.showOptionsAnimation()
+    }
+
+    selectRxOption($event: Event, option: RxOptions) {
+        $event.stopPropagation()
+        $event.preventDefault()
+        if (this.isDisabled) return
+        this.value = option.value
+        this.onTouch()
+        this.onChange(this.value)
+        this.hideOptionsAnimation()
+    }
+
+    private showOptionsAnimation() {
+        if (this.openOptions) return
+
+        if (this._options.length == 0) return
+
+        gsap.timeline().to(
+            this.selectOptions.nativeElement,
+            {
+                duration: 0.8,
+                y: '0%',
+                opacity: 1,
+                ease: Elastic.easeOut.config(1, 0.4),
+                pointerEvents: 'auto',
+                onComplete: () => {
+                    this.openOptions = true
+                },
+            },
+            0
+        )
+    }
+
+    private hideOptionsAnimation() {
+        if (!this.openOptions) return
+
+        gsap.timeline().to(
+            this.selectOptions.nativeElement,
+            {
+                duration: 0.3,
+                y: '25%',
+                opacity: 0,
+                pointerEvents: 'none',
+                onComplete: () => {
+                    this.openOptions = false
+                },
+            },
+            0
+        )
+    }
+
+    private documentClick(event: any) {
+        if (event.target != this.rxSelectInput.nativeElement) {
+            this.hideOptionsAnimation()
+        }
     }
 }

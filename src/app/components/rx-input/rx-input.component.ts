@@ -46,6 +46,7 @@ export class RxInputComponent implements OnInit, ControlValueAccessor {
         precision: 2,
     }
     @Input() isDisabled: boolean = false
+    @Input() styleClass: string = 'input-group'
 
     value: any = ''
     onChange = (_: any) => {}

@@ -1,8 +1,8 @@
-<div class="input-group">
+<div [ngClass]="styleClass">
     <label class="title" [class.error]="isInvalid()" [for]="idField">
         {{ title }}
     </label>
-    <div>
+    <div class="control-elements">
         <textarea *ngIf="inputType == 'textarea'" class="input-text" [class.input-error]="isInvalid()" [name]="name"
             [id]="idField" rows="3" [placeholder]="placeholder" [value]="value" (input)="onInput($event)"
             (blur)="onTouch()" [disabled]="isDisabled"></textarea>
@@ -23,8 +23,8 @@
             [id]="idField" [placeholder]="placeholder" [value]="value" (input)="onInput($event)" (blur)="onTouch()"
             [disabled]="isDisabled" />
 
-        <div class="h-5 w-full">
-            <small class="error-message" *ngIf="showErrorMessage()">
+        <div class="error-message">
+            <small class="" *ngIf="showErrorMessage()">
                 {{ getErrorMessage() }}
             </small>
         </div>
