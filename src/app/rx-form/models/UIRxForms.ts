@@ -11,7 +11,7 @@ export interface IModelForm<T> extends AppFormGroup<T> {
     }
 }
 
-export interface RxOptions {
+export interface RxOptions<T = any> {
     label: string
-    value: any
+    value: T
 }
