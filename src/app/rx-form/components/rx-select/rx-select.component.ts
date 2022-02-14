@@ -48,7 +48,7 @@ export class RxSelectComponent implements OnInit, ControlValueAccessor {
 
     @Input() title: string = 'Titulo'
     @Input() placeholder: string = ''
-    @Input() name: string = 'name'
+    @Input() name: string = 'select'
     @Input() options: RxOptions[] = []
     @Input() native: boolean = false
     @Input() asyncOptions?: Observable<RxOptions[]>
@@ -138,6 +138,7 @@ export class RxSelectComponent implements OnInit, ControlValueAccessor {
         $event.stopPropagation()
         $event.preventDefault()
         if (this.isDisabled) return
+        this.onTouch()
         this.showOptionsAnimation()
     }
 
@@ -159,7 +160,7 @@ export class RxSelectComponent implements OnInit, ControlValueAccessor {
         gsap.timeline().to(
             this.selectOptions.nativeElement,
             {
-                duration: 0.8,
+                duration: 0.6,
                 y: '0%',
                 opacity: 1,
                 ease: Elastic.easeOut.config(1, 0.4),

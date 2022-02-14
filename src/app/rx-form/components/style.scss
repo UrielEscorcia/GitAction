@@ -39,7 +39,28 @@
             @apply accent-slate-800 text-slate-800 focus:ring-slate-800;
         }
 
-        .input-error {
+        .toggle-native {
+            @apply bg-slate-900/20 border-slate-900;
+
+            &:checked,
+            &[checked='true'] {
+                @apply bg-slate-900;
+            }
+        }
+
+        .toggle {
+            @apply bg-slate-900/20;
+
+            &.active {
+                @apply bg-slate-900;
+            }
+
+            .switch {
+                @apply bg-slate-50;
+            }
+        }
+
+        .field-error {
             @apply border border-red-400 ring-red-400 focus:border-red-400 focus:ring-red-400;
         }
 

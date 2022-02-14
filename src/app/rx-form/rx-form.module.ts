@@ -6,9 +6,10 @@ import { NgxCurrencyModule } from 'ngx-currency'
 
 import { RxInputComponent } from './components/rx-input/rx-input.component'
 import { RxSelectComponent } from './components/rx-select/rx-select.component'
+import { RxSwitchComponent } from './components/rx-switch/rx-switch.component'
 
 @NgModule({
-    declarations: [RxInputComponent, RxSelectComponent],
+    declarations: [RxInputComponent, RxSelectComponent, RxSwitchComponent],
     imports: [
         CommonModule,
         ReactiveFormsModule,
@@ -16,6 +17,6 @@ import { RxSelectComponent } from './components/rx-select/rx-select.component'
         RxReactiveFormsModule,
         NgxCurrencyModule,
     ],
-    exports: [RxInputComponent, RxSelectComponent],
+    exports: [RxInputComponent, RxSelectComponent, RxSwitchComponent],
 })
 export class RxFormModule {}

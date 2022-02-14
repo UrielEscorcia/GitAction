@@ -13,7 +13,7 @@ Reactive Forms module for angular applications with **input** components type:
 - currency
 - textarea
 
-And **select** component with native *html* and *modern* custom style.
+**Select** and **Switch** components with native *html* and *modern* custom style.
 
 ### Dependencies
 
@@ -90,19 +90,40 @@ SCSS Structure to customize component style.
             @apply accent-slate-800 text-slate-800 focus:ring-slate-800;
         }
 
-        .input-error {
+        .toggle-native {
+            @apply bg-slate-900/20 border-slate-900;
+
+            &:checked,
+            &[checked='true'] {
+                @apply bg-slate-900;
+            }
+        }
+
+        .toggle {
+            @apply bg-slate-900/20;
+
+            &.active {
+                @apply bg-slate-900;
+            }
+
+            .switch {
+                @apply bg-slate-50;
+            }
+        }
+
+        .field-error {
             @apply border border-red-400 ring-red-400 focus:border-red-400 focus:ring-red-400;
         }
 
         .error-message {
             @apply flex h-4 w-full;
-
             small {
                 @apply text-red-400 font-light text-xs font-sans;
             }
         }
     }
 }
+
 
 
 ```
@@ -135,3 +156,13 @@ SCSS Structure to customize component style.
     </rx-select>
 
     ```
+
+- #### Switch
+    <!-- - Html -->
+
+    ``` html
+
+    <rx-switch [native]="true" title="Online" name="online" 
+        formControlName="online"
+        [control]="form.controls.online">
+    </rx-switch>

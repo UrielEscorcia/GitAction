@@ -8,8 +8,8 @@
                 </rx-input>
             </div>
             <div>
-                <rx-select title="Type" placeholder="Selecciona..." name="type" [asyncOptions]="asyncOptions"
-                    formControlName="type" [control]="form.controls.type"></rx-select>
+                <rx-select title="Type" placeholder="Selecciona..." name="type" [native]="true"
+                    [asyncOptions]="asyncOptions" formControlName="type" [control]="form.controls.type"></rx-select>
             </div>
             <!-- <div class="input-group">
                 <label class="title" for="type">Type</label>
@@ -40,6 +40,10 @@
             <div>
                 <rx-input title="Price" name="price" inputType="currency" formControlName="amount"
                     [control]="form.controls.amount"></rx-input>
+            </div>
+            <div>
+                <rx-switch [native]="true" title="Online" name="online" formControlName="online"
+                    [control]="form.controls.online"></rx-switch>
             </div>
             <div class="mt-6 flex">
                 <button type="button" [disabled]="form.invalid" (click)="save()" class="submit">

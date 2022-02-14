@@ -1,0 +1,25 @@
+<div [ngClass]="styleClass">
+    <label class="title" [class.error]="isInvalid()" [for]="idField">
+        {{ title }}
+    </label>
+    <div class="control-elements">
+
+        <input *ngIf="native" type="checkbox" class="toggle-native-base toggle-native" [class.field-error]="isInvalid()"
+            [name]="name" [value]="value" [id]="idField" (blur)="onTouch()" (input)="onInput($event)"
+            [disabled]="isDisabled">
+
+        <div *ngIf="!native" class="toggle-base toggle" [class.active]="value" [class.field-error]="isInvalid()"
+            [class.disabled]="isDisabled" [id]="idField" (click)="toggle($event)" (blur)="onTouch()">
+            <div [class.translate-x-6]="value" class="switch-base switch"></div>
+        </div>
+
+        <div class="error-message">
+            <small class="" *ngIf="showErrorMessage()">
+                {{ getErrorMessage() }}
+            </small>
+        </div>
+    </div>
+
+
+
+</div>

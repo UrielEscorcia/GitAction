@@ -9,6 +9,7 @@ import {
     numeric,
     NumericValueType,
     maxNumber,
+    requiredTrue,
 } from '@rxweb/reactive-form-validators'
 
 export enum TypeUser {
@@ -64,6 +65,9 @@ export class User {
     })
     amount: number
 
+    @requiredTrue({ message: 'El usuario debe estar online.' })
+    online: boolean
+
     @prop()
     createdAt: Timestamp
 
@@ -72,6 +76,7 @@ export class User {
         this.type = TypeUser.MASTER
         this.person = new Person()
         this.amount = 0
+        this.online = false
         this.createdAt = Timestamp.now()
     }
 
@@ -81,6 +86,7 @@ export class User {
         this.type = investor.type
         this.person = new Person(investor.person)
         this.amount = investor.amount
+        this.online = investor.online
         this.createdAt = investor.createdAt
         return this
     }
@@ -91,6 +97,7 @@ export class User {
             type: investor.type,
             person: Person.toFire(investor.person),
             amount: investor.amount,
+            online: investor.online,
             createdAt: investor.createdAt,
         }
     }
