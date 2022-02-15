@@ -137,8 +137,7 @@ SCSS Structure to customize component style.
 
     <rx-input title="Usuario" name="username" placeholder="@juanes" 
         inputType="text" 
-        formControlName="username" 
-        [control]="form.controls.username">
+        formControlName="username">
     </rx-input>
 
     ```
@@ -151,8 +150,7 @@ SCSS Structure to customize component style.
     <rx-select title="Type" placeholder="Selecciona..." name="type" 
         [asyncOptions]="asyncOptions" 
         formControlName="type" 
-        [native]="true" 
-        [control]="form.controls.type">
+        [native]="true">
     </rx-select>
 
     ```
@@ -163,6 +161,5 @@ SCSS Structure to customize component style.
     ``` html
 
     <rx-switch [native]="true" title="Online" name="online" 
-        formControlName="online"
-        [control]="form.controls.online">
+        formControlName="online">
     </rx-switch>
