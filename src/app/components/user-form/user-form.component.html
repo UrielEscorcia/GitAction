@@ -8,7 +8,7 @@
                 </rx-input>
             </div>
             <div>
-                <rx-select title="Type" placeholder="Selecciona..." name="type" [native]="true"
+                <rx-select title="Type" placeholder="Selecciona..." name="type" [native]="false"
                     [asyncOptions]="asyncOptions" formControlName="type"></rx-select>
             </div>
             <div class="space-y-2" formGroupName="person">
@@ -30,7 +30,7 @@
                 <rx-switch [native]="true" title="Online" name="online" formControlName="online"></rx-switch>
             </div>
             <div class="mt-6 flex">
-                <button type="button" [disabled]="form.invalid" (click)="save()" class="submit">
+                <button type="button" [disabled]="form.invalid || form.disabled" (click)="save()" class="submit">
                     Guardar
                 </button>
             </div>

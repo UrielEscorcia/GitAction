@@ -4,14 +4,14 @@
     </label>
 
     <div class="control-elements">
-        <select *ngIf="native" class="input-select" [class.field-error]="isInvalid()" [name]="name" [id]="idField"
-            [(ngModel)]="value" (input)="onInput($event)" (blur)="onTouch()" [disabled]="isDisabled">
+        <select *ngIf="native" class="bg-none input-select" [class.field-error]="isInvalid()" [name]="name"
+            [id]="idField" [(ngModel)]="value" (input)="onInput($event)" (blur)="onTouch()" [disabled]="isDisabled">
             <option [ngValue]="null" [disabled]="true">{{ placeholder }}</option>
             <option [value]="op.value" *ngFor="let op of _options">{{ op.label }}</option>
         </select>
 
         <div *ngIf="!native" class="rx-select-contentainer">
-            <div #rxSelectInput class="input-select" [class.field-error]="isInvalid()"
+            <div #rxSelectInput class="input-select" [class.field-error]="isInvalid()" [class.disabled]="isDisabled"
                 (click)="openOptionsSelect($event)">
                 {{ selectedOrPlaceholder }}
             </div>

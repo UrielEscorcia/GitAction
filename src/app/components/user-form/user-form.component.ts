@@ -29,7 +29,9 @@ export class UserFormComponent implements OnInit {
         this.form = this.fBuilder.formGroup(user) as IModelForm<User>
     }
 
-    ngOnInit(): void {}
+    ngOnInit(): void {
+        this.form.disable()
+    }
 
     get asyncOptions(): Observable<RxOptions[]> {
         return of(this.selectOptions)

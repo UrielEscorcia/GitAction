@@ -63,15 +63,19 @@ SCSS Structure to customize component style.
         @apply flex flex-col;
 
         .input-text {
-            @apply border border-slate-900 focus:border-slate-900 focus:ring-slate-900 p-2 w-full rounded-lg text-slate-800 text-base font-extralight;
+            @apply border border-slate-900 focus:border-slate-900 focus:ring-slate-900 p-2 w-full rounded-lg text-slate-800 text-base font-extralight disabled:border-slate-300 disabled:text-slate-300 disabled:placeholder:text-slate-300;
         }
 
         .input-select {
-            @apply cursor-pointer border border-slate-900 focus:border-slate-900 focus:ring-slate-900 p-2 w-full rounded-lg text-slate-800 text-base font-extralight;
+            @apply cursor-pointer border border-slate-900 focus:border-slate-900 focus:ring-slate-900 p-2 w-full rounded-lg text-slate-800 text-base font-extralight disabled:border-slate-300 disabled:text-slate-300 disabled:placeholder:text-slate-300 disabled:cursor-auto;
         }
 
         .rx-select-contentainer {
             @apply relative;
+
+            .disabled {
+                @apply border-slate-300 text-slate-300 placeholder:text-slate-300 cursor-auto;
+            }
 
             .select-body {
                 @apply absolute top-0 w-full max-h-60 overflow-y-auto bg-slate-800 py-4 shadow-lg shadow-slate-800/70 rounded-lg pointer-events-none opacity-0 translate-y-1/4;
@@ -86,16 +90,12 @@ SCSS Structure to customize component style.
             }
         }
 
-        .input-radio {
-            @apply accent-slate-800 text-slate-800 focus:ring-slate-800;
-        }
-
         .toggle-native {
-            @apply bg-slate-900/20 border-slate-900;
+            @apply bg-slate-900/20 border-slate-900 disabled:border-slate-300 disabled:cursor-auto;
 
             &:checked,
             &[checked='true'] {
-                @apply bg-slate-900;
+                @apply bg-slate-900 disabled:bg-slate-900/60;
             }
         }
 
@@ -104,6 +104,10 @@ SCSS Structure to customize component style.
 
             &.active {
                 @apply bg-slate-900;
+            }
+
+            &.disabled {
+                @apply bg-opacity-70 cursor-auto;
             }
 
             .switch {
@@ -123,7 +127,6 @@ SCSS Structure to customize component style.
         }
     }
 }
-
 
 
 ```

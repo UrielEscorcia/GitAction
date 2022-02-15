@@ -5,7 +5,7 @@
     <div class="control-elements">
 
         <input *ngIf="native" type="checkbox" class="toggle-native-base toggle-native" [class.field-error]="isInvalid()"
-            [name]="name" [value]="value" [id]="idField" (blur)="onTouch()" (input)="onInput($event)"
+            [name]="name" [checked]="value" [id]="idField" (blur)="onTouch()" (input)="onInput($event)"
             [disabled]="isDisabled">
 
         <div *ngIf="!native" class="toggle-base toggle" [class.active]="value" [class.field-error]="isInvalid()"

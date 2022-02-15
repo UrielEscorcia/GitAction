@@ -30,7 +30,7 @@ import { gsap, Elastic } from 'gsap'
 @Component({
     selector: 'rx-select',
     templateUrl: './rx-select.component.html',
-    styleUrls: ['../style.scss'],
+    styleUrls: ['../style.scss', './rx-select.component.scss'],
     // providers: [
     //     {
     //         provide: NG_VALUE_ACCESSOR,
