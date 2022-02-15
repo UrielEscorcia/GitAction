@@ -1,23 +1,23 @@
-import { Component, OnInit, Input } from '@angular/core'
-import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms'
+import { Component, OnInit, Input, Optional, Self } from '@angular/core'
 import {
-    IFormGroup,
-    IAbstractControl,
-    RxFormArray,
-} from '@rxweb/reactive-form-validators'
+    NgControl,
+    ControlValueAccessor,
+    NG_VALUE_ACCESSOR,
+} from '@angular/forms'
+import { IAbstractControl } from '@rxweb/reactive-form-validators'
 import { isInvalid, showErrorMessage, getErrorMessage } from '../../models'
 
 @Component({
     selector: 'rx-input',
     templateUrl: './rx-input.component.html',
     styleUrls: ['../style.scss'],
-    providers: [
-        {
-            provide: NG_VALUE_ACCESSOR,
-            multi: true,
-            useExisting: RxInputComponent,
-        },
-    ],
+    // providers: [
+    //     {
+    //         provide: NG_VALUE_ACCESSOR,
+    //         multi: true,
+    //         useExisting: RxInputComponent,
+    //     },
+    // ],
 })
 export class RxInputComponent implements OnInit, ControlValueAccessor {
     @Input() title: string = 'Titulo'
@@ -33,7 +33,6 @@ export class RxInputComponent implements OnInit, ControlValueAccessor {
         | 'url'
         | 'currency'
         | 'textarea' = 'text'
-    @Input() control?: IAbstractControl | RxFormArray | IFormGroup<any>
 
     @Input() currencyOptions: any = {
         thousands: ',',
@@ -48,7 +47,13 @@ export class RxInputComponent implements OnInit, ControlValueAccessor {
     onChange = (_: any) => {}
     onTouch = () => {}
 
-    constructor() {}
+    constructor(@Optional() @Self() public ngControl: NgControl) {
+        if (this.ngControl != null) {
+            // Setting the value accessor directly (instead of using
+            // the providers) to avoid running into a circular import.
+            this.ngControl.valueAccessor = this
+        }
+    }
 
     ngOnInit(): void {}
 
@@ -84,20 +89,20 @@ export class RxInputComponent implements OnInit, ControlValueAccessor {
     }
 
     isInvalid() {
-        return this.control
-            ? isInvalid(this.control as IAbstractControl)
+        return this.ngControl?.control
+            ? isInvalid(this.ngControl.control as IAbstractControl)
             : false
     }
 
     showErrorMessage() {
-        return this.control
-            ? showErrorMessage(this.control as IAbstractControl)
+        return this.ngControl?.control
+            ? showErrorMessage(this.ngControl.control as IAbstractControl)
             : false
     }
 
     getErrorMessage() {
-        return this.control
-            ? getErrorMessage(this.control as IAbstractControl)
+        return this.ngControl?.control
+            ? getErrorMessage(this.ngControl.control as IAbstractControl)
             : ''
     }
 }

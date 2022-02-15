@@ -5,8 +5,14 @@ import {
     ViewChild,
     HostListener,
     Input,
+    Optional,
+    Self,
 } from '@angular/core'
-import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms'
+import {
+    NgControl,
+    ControlValueAccessor,
+    NG_VALUE_ACCESSOR,
+} from '@angular/forms'
 import {
     IFormGroup,
     IAbstractControl,
@@ -25,13 +31,13 @@ import { gsap, Elastic } from 'gsap'
     selector: 'rx-select',
     templateUrl: './rx-select.component.html',
     styleUrls: ['../style.scss'],
-    providers: [
-        {
-            provide: NG_VALUE_ACCESSOR,
-            multi: true,
-            useExisting: RxSelectComponent,
-        },
-    ],
+    // providers: [
+    //     {
+    //         provide: NG_VALUE_ACCESSOR,
+    //         multi: true,
+    //         useExisting: RxSelectComponent,
+    //     },
+    // ],
     host: {
         '(document:click)': 'documentClick($event)',
     },
@@ -54,7 +60,7 @@ export class RxSelectComponent implements OnInit, ControlValueAccessor {
     @Input() asyncOptions?: Observable<RxOptions[]>
 
     @Input() isDisabled: boolean = false
-    @Input() control?: IAbstractControl | RxFormArray | IFormGroup<any>
+
     @Input() styleClass: string = 'form-field-group'
 
     _options: RxOptions[] = []
@@ -65,7 +71,13 @@ export class RxSelectComponent implements OnInit, ControlValueAccessor {
 
     private openOptions = false
 
-    constructor() {}
+    constructor(@Optional() @Self() public ngControl: NgControl) {
+        if (this.ngControl != null) {
+            // Setting the value accessor directly (instead of using
+            // the providers) to avoid running into a circular import.
+            this.ngControl.valueAccessor = this
+        }
+    }
     ngOnInit(): void {
         if (this.asyncOptions) {
             this.asyncOpts$ = this.asyncOptions.subscribe((options) => {
@@ -117,20 +129,20 @@ export class RxSelectComponent implements OnInit, ControlValueAccessor {
     }
 
     isInvalid() {
-        return this.control
-            ? isInvalid(this.control as IAbstractControl)
+        return this.ngControl?.control
+            ? isInvalid(this.ngControl.control as IAbstractControl)
             : false
     }
 
     showErrorMessage() {
-        return this.control
-            ? showErrorMessage(this.control as IAbstractControl)
+        return this.ngControl?.control
+            ? showErrorMessage(this.ngControl.control as IAbstractControl)
             : false
     }
 
     getErrorMessage() {
-        return this.control
-            ? getErrorMessage(this.control as IAbstractControl)
+        return this.ngControl?.control
+            ? getErrorMessage(this.ngControl.control as IAbstractControl)
             : ''
     }
 

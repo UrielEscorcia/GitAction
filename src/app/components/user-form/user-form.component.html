@@ -4,46 +4,30 @@
         <form class="p-2 space-y-4" [formGroup]="form">
             <div>
                 <rx-input title="Usuario" name="username" placeholder="@juanes" inputType="text"
-                    formControlName="username" [control]="form.controls.username">
+                    formControlName="username">
                 </rx-input>
             </div>
             <div>
                 <rx-select title="Type" placeholder="Selecciona..." name="type" [native]="true"
-                    [asyncOptions]="asyncOptions" formControlName="type" [control]="form.controls.type"></rx-select>
+                    [asyncOptions]="asyncOptions" formControlName="type"></rx-select>
             </div>
-            <!-- <div class="input-group">
-                <label class="title" for="type">Type</label>
-                <div class="flex justify-star gap-6">
-                    <div class="space-x-2">
-                        <input class="input-radio" type="radio" formControlName="type" name="type" value="MASTER" />
-                        <span class="content">Master</span>
-                    </div>
-                    <div class="space-x-2">
-                        <input class="input-radio" type="radio" formControlName="type" name="type"
-                            value="ADMINISTRADOR" />
-                        <span class="content">Admin</span>
-                    </div>
-                </div>
-            </div> -->
             <div class="space-y-2" formGroupName="person">
                 <h3 class="font-medium text-xl">Person Data</h3>
                 <div>
                     <rx-input title="Name" name="name" placeholder="Juan Pepe" inputType="textarea"
-                        formControlName="fullname" [control]="formPerson.controls.fullname"></rx-input>
+                        formControlName="fullname"></rx-input>
                 </div>
 
                 <div>
                     <rx-input title="Email" name="email" placeholder="juan@email.com" inputType="email"
-                        formControlName="email" [control]="formPerson.controls.email"></rx-input>
+                        formControlName="email"></rx-input>
                 </div>
             </div>
             <div>
-                <rx-input title="Price" name="price" inputType="currency" formControlName="amount"
-                    [control]="form.controls.amount"></rx-input>
+                <rx-input title="Price" name="price" inputType="currency" formControlName="amount"></rx-input>
             </div>
             <div>
-                <rx-switch [native]="true" title="Online" name="online" formControlName="online"
-                    [control]="form.controls.online"></rx-switch>
+                <rx-switch [native]="true" title="Online" name="online" formControlName="online"></rx-switch>
             </div>
             <div class="mt-6 flex">
                 <button type="button" [disabled]="form.invalid" (click)="save()" class="submit">
