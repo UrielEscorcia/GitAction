@@ -7,9 +7,13 @@
             [id]="idField" rows="3" [placeholder]="placeholder" [value]="value" (input)="onInput($event)"
             (blur)="onTouch()" [disabled]="isDisabled"></textarea>
 
+        <input *ngIf="inputType == 'tel'" class="input-text" type="tel" [class.field-error]="isInvalid()" [name]="name"
+            [id]="idField" (blur)="onTouch()" [placeholder]="placeholder" [disabled]="isDisabled" [(ngModel)]="value"
+            mask="(000) 000-0000" (keyup)="onSpecialInput($event)">
+
         <input *ngIf="inputType == 'currency'" class="input-text" type="tel" [class.field-error]="isInvalid()"
             [name]="name" [id]="idField" (blur)="onTouch()" [disabled]="isDisabled" currencyMask [(ngModel)]="value"
-            (keyup)="onCurrencyInput($event)" [options]="currencyOptions">
+            (keyup)="onSpecialInput($event)" [options]="currencyOptions">
 
         <input *ngIf="[
           'text',
@@ -17,7 +21,6 @@
           'email',
           'number',
           'search',
-          'tel',
           'url'
         ].includes(inputType)" class="input-text" [class.field-error]="isInvalid()" [type]="inputType" [name]="name"
             [id]="idField" [placeholder]="placeholder" [value]="value" (input)="onInput($event)" (blur)="onTouch()"

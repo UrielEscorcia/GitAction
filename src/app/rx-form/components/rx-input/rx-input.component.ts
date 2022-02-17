@@ -61,7 +61,7 @@ export class RxInputComponent implements OnInit, ControlValueAccessor {
         return this.name ?? this.title
     }
 
-    onCurrencyInput($event: Event) {
+    onSpecialInput($event: Event) {
         if (this.isDisabled) return
         this.onTouch()
         this.onChange(this.value)

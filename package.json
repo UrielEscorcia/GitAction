@@ -23,6 +23,7 @@
     "firebase": "^9.4.0",
     "gsap": "^3.9.1",
     "ngx-currency": "^2.5.3",
+    "ngx-mask": "^13.1.1",
     "rxfire": "^6.0.0",
     "rxjs": "~7.4.0",
     "tslib": "^2.3.0",

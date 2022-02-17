@@ -30,7 +30,7 @@ export class UserFormComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        this.form.disable()
+        // this.form.disable()
     }
 
     get asyncOptions(): Observable<RxOptions[]> {

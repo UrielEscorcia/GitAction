@@ -10,6 +10,7 @@ import {
     NumericValueType,
     maxNumber,
     requiredTrue,
+    digit,
 } from '@rxweb/reactive-form-validators'
 
 export enum TypeUser {
@@ -29,15 +30,24 @@ export class Person {
     @email({ message: 'El email no es válido.' })
     email?: string
 
+    @digit({ message: 'El teléfono debe ser un número.' })
+    @minLength({
+        value: 10,
+        message: 'El teléfono debe tener al menos 10 caracteres.',
+    })
+    phone: string
+
     constructor(person?: Person) {
         this.fullname = person?.fullname ?? ''
         this.email = person?.email ?? ''
+        this.phone = person?.phone ?? ''
     }
 
     static toFire(person: Person) {
         return {
             fullname: person.fullname,
             email: person.email,
+            phone: person.phone,
         }
     }
 }
