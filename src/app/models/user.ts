@@ -9,6 +9,7 @@ import {
     numeric,
     NumericValueType,
     maxNumber,
+    minNumber,
     requiredTrue,
     digit,
 } from '@rxweb/reactive-form-validators'
@@ -78,6 +79,12 @@ export class User {
     @requiredTrue({ message: 'El usuario debe estar online.' })
     online: boolean
 
+    @minNumber({
+        value: 2,
+        message: 'El radio debe ser mayor a 1',
+    })
+    radio: number
+
     @prop()
     createdAt: Timestamp
 
@@ -87,6 +94,7 @@ export class User {
         this.person = new Person()
         this.amount = 0
         this.online = false
+        this.radio = 1
         this.createdAt = Timestamp.now()
     }
 
@@ -97,6 +105,7 @@ export class User {
         this.person = new Person(investor.person)
         this.amount = investor.amount
         this.online = investor.online
+        this.radio = investor.radio
         this.createdAt = investor.createdAt
         return this
     }
@@ -108,6 +117,7 @@ export class User {
             person: Person.toFire(investor.person),
             amount: investor.amount,
             online: investor.online,
+            radio: investor.radio,
             createdAt: investor.createdAt,
         }
     }

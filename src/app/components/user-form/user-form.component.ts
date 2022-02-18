@@ -24,6 +24,17 @@ export class UserFormComponent implements OnInit {
         },
     ]
 
+    radioOptions: RxOptions[] = [
+        {
+            label: 'Option 1',
+            value: 1,
+        },
+        {
+            label: 'Option 2',
+            value: 2,
+        },
+    ]
+
     constructor(private fBuilder: RxFormBuilder) {
         const user = new User()
         this.form = this.fBuilder.formGroup(user) as IModelForm<User>
@@ -31,6 +42,7 @@ export class UserFormComponent implements OnInit {
 
     ngOnInit(): void {
         // this.form.disable()
+        this.form.valueChanges.subscribe((data) => console.log(data))
     }
 
     get asyncOptions(): Observable<RxOptions[]> {

@@ -33,6 +33,9 @@
             <div>
                 <rx-switch [native]="true" title="Online" name="online" formControlName="online"></rx-switch>
             </div>
+            <div>
+                <rx-radios title="Radios" name="radios" [options]="radioOptions" formControlName="radio"></rx-radios>
+            </div>
             <div class="mt-6 flex">
                 <button type="button" [disabled]="form.invalid || form.disabled" (click)="save()" class="submit">
                     Guardar
