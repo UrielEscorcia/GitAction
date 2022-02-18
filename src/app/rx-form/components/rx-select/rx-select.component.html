@@ -1,33 +1,33 @@
 <div [ngClass]="styleClass">
-    <label class="title" [class.error]="isInvalid()" [for]="idField">
-        {{ title }}
-    </label>
+    <div class="controls-container">
 
-    <div class="control-elements">
-        <select *ngIf="native" class="bg-none input-select" [class.field-error]="isInvalid()" [name]="name"
-            [id]="idField" [(ngModel)]="value" (input)="onInput($event)" (blur)="onTouch()" [disabled]="isDisabled">
-            <option [ngValue]="null" [disabled]="true">{{ placeholder }}</option>
-            <option [value]="op.value" *ngFor="let op of _options">{{ op.label }}</option>
-        </select>
+        <label class="title" [class.error]="isInvalid()" [for]="idField">
+            {{ title }}
+        </label>
+        <div class="control-elements">
+            <select *ngIf="native" class="bg-none input-select" [class.field-error]="isInvalid()" [name]="name"
+                [id]="idField" [(ngModel)]="value" (input)="onInput($event)" (blur)="onTouch()" [disabled]="isDisabled">
+                <option [ngValue]="null" [disabled]="true">{{ placeholder }}</option>
+                <option [value]="op.value" *ngFor="let op of _options">{{ op.label }}</option>
+            </select>
 
-        <div *ngIf="!native" class="rx-select-contentainer">
-            <div #rxSelectInput class="input-select" [class.field-error]="isInvalid()" [class.disabled]="isDisabled"
-                (click)="openOptionsSelect($event)">
-                {{ selectedOrPlaceholder }}
-            </div>
-            <div #selectOptions class="select-body ">
-                <div class="select-option" *ngFor="let op of _options" (click)="selectRxOption($event, op)">
-                    {{ op.label }}
+            <div *ngIf="!native" class="rx-select-contentainer">
+                <div #rxSelectInput class="input-select" [class.field-error]="isInvalid()" [class.disabled]="isDisabled"
+                    (click)="openOptionsSelect($event)">
+                    {{ selectedOrPlaceholder }}
+                </div>
+                <div #selectOptions class="select-body ">
+                    <div class="select-option" *ngFor="let op of _options" (click)="selectRxOption($event, op)">
+                        {{ op.label }}
+                    </div>
                 </div>
             </div>
-        </div>
 
-        <div>
-            <div class="error-message">
-                <small class="" *ngIf="showErrorMessage()">
-                    {{ getErrorMessage() }}
-                </small>
-            </div>
         </div>
+    </div>
+    <div class="error-message">
+        <small class="" *ngIf="showErrorMessage()">
+            {{ getErrorMessage() }}
+        </small>
     </div>
 </div>

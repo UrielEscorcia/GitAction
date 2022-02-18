@@ -49,81 +49,106 @@ NPM dependencies for this module:
 SCSS Structure to customize component style.
 
 ```scss
+
 .form-field-group {
-    @apply font-sans space-y-1;
+    @apply font-sans space-y-0.5;
 
-    .title {
-        @apply font-light text-lg text-slate-800;
+    .controls-container {
+        @apply flex  gap-1;
 
-        &.error {
-            @apply text-red-400;
+        .title {
+            @apply font-light text-lg text-slate-800;
+
+            &.error {
+                @apply text-red-400;
+            }
+        }
+        .control-elements {
+            @apply w-full flex flex-col;
+
+            .input-text {
+                @apply border border-slate-900 focus:border-slate-900 focus:ring-slate-900 p-2 w-full rounded-lg text-slate-800 text-base font-extralight disabled:border-slate-300 disabled:text-slate-300 disabled:placeholder:text-slate-300;
+            }
+
+            .input-select {
+                @apply cursor-pointer border border-slate-900 focus:border-slate-900 focus:ring-slate-900 p-2 w-full rounded-lg text-slate-800 text-base font-extralight disabled:border-slate-300 disabled:text-slate-300 disabled:placeholder:text-slate-300 disabled:cursor-auto;
+            }
+
+            .rx-select-contentainer {
+                @apply relative;
+
+                .disabled {
+                    @apply border-slate-300 text-slate-300 placeholder:text-slate-300 cursor-auto;
+                }
+
+                .select-body {
+                    @apply absolute top-0 w-full max-h-60 overflow-y-auto bg-slate-800 py-4 shadow-lg shadow-slate-800/70 rounded-lg pointer-events-none opacity-0 translate-y-1/4;
+
+                    &.select-top {
+                        @apply top-auto bottom-full;
+                    }
+
+                    .select-option {
+                        @apply text-slate-50 font-sans font-light cursor-pointer px-4 py-2 hover:bg-slate-900 duration-200;
+                    }
+                }
+            }
+
+            .toggle-native {
+                @apply bg-slate-900/20 border-slate-900 disabled:border-slate-300 disabled:cursor-auto;
+
+                &:checked,
+                &[checked='true'] {
+                    @apply bg-slate-900 disabled:bg-slate-900/60;
+                }
+            }
+
+            .toggle {
+                @apply bg-slate-900/20;
+
+                &.active {
+                    @apply bg-slate-900;
+                }
+
+                &.disabled {
+                    @apply bg-opacity-70 cursor-auto;
+                }
+
+                .switch {
+                    @apply bg-slate-50;
+                }
+            }
+
+            .radios-container {
+                @apply flex flex-col gap-2 font-sans;
+
+                .rx-option {
+                    @apply flex gap-2 items-center;
+
+                    .input-radio {
+                        @apply focus:ring-slate-900 border-slate-900 border-opacity-50 disabled:cursor-auto disabled:border-opacity-20;
+
+                        &:checked,
+                        &[checked='true'] {
+                            @apply bg-slate-900 border-slate-900 disabled:bg-opacity-20 disabled:border-opacity-20;
+                        }
+                    }
+
+                    .label-radio {
+                        @apply font-light text-slate-800 text-sm;
+                    }
+                }
+            }
+
+            .field-error {
+                @apply border border-red-400 ring-red-400 focus:border-red-400 focus:ring-red-400;
+            }
         }
     }
-    .control-elements {
-        @apply flex flex-col;
-
-        .input-text {
-            @apply border border-slate-900 focus:border-slate-900 focus:ring-slate-900 p-2 w-full rounded-lg text-slate-800 text-base font-extralight disabled:border-slate-300 disabled:text-slate-300 disabled:placeholder:text-slate-300;
-        }
-
-        .input-select {
-            @apply cursor-pointer border border-slate-900 focus:border-slate-900 focus:ring-slate-900 p-2 w-full rounded-lg text-slate-800 text-base font-extralight disabled:border-slate-300 disabled:text-slate-300 disabled:placeholder:text-slate-300 disabled:cursor-auto;
-        }
-
-        .rx-select-contentainer {
-            @apply relative;
-
-            .disabled {
-                @apply border-slate-300 text-slate-300 placeholder:text-slate-300 cursor-auto;
-            }
-
-            .select-body {
-                @apply absolute top-0 w-full max-h-60 overflow-y-auto bg-slate-800 py-4 shadow-lg shadow-slate-800/70 rounded-lg pointer-events-none opacity-0 translate-y-1/4;
-
-                &.select-top {
-                    @apply top-auto bottom-full;
-                }
-
-                .select-option {
-                    @apply text-slate-50 font-sans font-light cursor-pointer px-4 py-2 hover:bg-slate-900 duration-200;
-                }
-            }
-        }
-
-        .toggle-native {
-            @apply bg-slate-900/20 border-slate-900 disabled:border-slate-300 disabled:cursor-auto;
-
-            &:checked,
-            &[checked='true'] {
-                @apply bg-slate-900 disabled:bg-slate-900/60;
-            }
-        }
-
-        .toggle {
-            @apply bg-slate-900/20;
-
-            &.active {
-                @apply bg-slate-900;
-            }
-
-            &.disabled {
-                @apply bg-opacity-70 cursor-auto;
-            }
-
-            .switch {
-                @apply bg-slate-50;
-            }
-        }
-
-        .field-error {
-            @apply border border-red-400 ring-red-400 focus:border-red-400 focus:ring-red-400;
-        }
-
-        .error-message {
-            @apply flex h-4 w-full;
-            small {
-                @apply text-red-400 font-light text-xs font-sans;
-            }
+    .error-message {
+        @apply flex h-4 w-full;
+        small {
+            @apply text-red-400 font-light text-xs font-sans;
         }
     }
 }
