@@ -1,0 +1,21 @@
+<div [ngClass]="styleClass">
+    <label class="title" [class.error]="isInvalid()" [for]="idField">
+        {{ title }}
+    </label>
+    <div class="control-elements">
+        <div class="radios-container">
+            <div class="rx-option" *ngFor="let op of _options; let i = index">
+                <input class="input-radio-base input-radio" (change)="onInput($event)" (blur)="onTouch()"
+                    [(ngModel)]="value" [disabled]="isDisabled" type="radio" [id]="i" [value]="op.value">
+                <label class="label-radio" [for]="i">{{ op.label}}</label>
+            </div>
+        </div>
+
+        <div class="error-message">
+            <small class="" *ngIf="showErrorMessage()">
+                {{ getErrorMessage() }}
+            </small>
+        </div>
+
+    </div>
+</div>

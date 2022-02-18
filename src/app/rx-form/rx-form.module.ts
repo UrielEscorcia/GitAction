@@ -8,9 +8,15 @@ import { NgxMaskModule, IConfig } from 'ngx-mask'
 import { RxInputComponent } from './components/rx-input/rx-input.component'
 import { RxSelectComponent } from './components/rx-select/rx-select.component'
 import { RxSwitchComponent } from './components/rx-switch/rx-switch.component'
+import { RxRadiosComponent } from './components/rx-radios/rx-radios.component'
 
 @NgModule({
-    declarations: [RxInputComponent, RxSelectComponent, RxSwitchComponent],
+    declarations: [
+        RxInputComponent,
+        RxSelectComponent,
+        RxSwitchComponent,
+        RxRadiosComponent,
+    ],
     imports: [
         CommonModule,
         ReactiveFormsModule,
@@ -19,6 +25,11 @@ import { RxSwitchComponent } from './components/rx-switch/rx-switch.component'
         NgxCurrencyModule,
         NgxMaskModule.forRoot(),
     ],
-    exports: [RxInputComponent, RxSelectComponent, RxSwitchComponent],
+    exports: [
+        RxInputComponent,
+        RxSelectComponent,
+        RxSwitchComponent,
+        RxRadiosComponent,
+    ],
 })
 export class RxFormModule {}
