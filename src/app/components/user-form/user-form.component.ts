@@ -41,21 +41,14 @@ export class UserFormComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        // this.form.disable()
-        this.form.valueChanges.subscribe((data) => console.log(data))
+        this.form.disable()
     }
 
     get asyncOptions(): Observable<RxOptions[]> {
         return of(this.selectOptions)
     }
 
-    get formPerson() {
-        const person = this.form.controls.person as IFormGroup<Person>
-        return person
-    }
-
     save() {
-        this.form.controls
         const data = this.form.value
         console.log(this.form)
         console.log(data)

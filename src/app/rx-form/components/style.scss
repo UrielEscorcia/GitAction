@@ -2,7 +2,7 @@
     @apply font-sans space-y-0.5;
 
     .controls-container {
-        @apply flex  gap-1;
+        @apply flex flex-col gap-1;
 
         .title {
             @apply font-light text-lg text-slate-800;
